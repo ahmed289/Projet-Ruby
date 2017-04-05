@@ -41,6 +41,9 @@ class UI
 end
 
 #initialisation de mon jeu avec la gem hosu
+
+
+# Grosse cochone
 class GameWindow < Hasu::Window
   SPRITE_SIZE = 128
   WINDOW_X = 1024
