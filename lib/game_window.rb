@@ -39,3 +39,27 @@ class UI
     @font.draw("Score: #{score}", 10, 10, 3, 1.0, 1.0, 0xff_ffff00)
   end
 end
+
+#initialisation de mon jeu avec la gem hosu
+class GameWindow < Hasu::Window
+  SPRITE_SIZE = 128
+  WINDOW_X = 1024
+  WINDOW_Y = 768
+attr_reader :score
+  def initialize
+    @score = 0
+    super(WINDOW_X, WINDOW_Y, false)
+    @ui = UI.new
+    @background_sprite = Gosu::Image.new(self, 'images/background.png', true)
+    @koala_sprite = Gosu::Image.new(self, 'images/koala.png', true)
+    @enemy_sprite = Gosu::Image.new(self, 'images/enemy.png', true)
+    @flag_sprite = Gosu::Image.new(self, 'images/flag.png', true)
+    @font = Gosu::Font.new(self, Gosu::default_font_name, 30)
+    @flag = {x: WINDOW_X - SPRITE_SIZE, y: WINDOW_Y - SPRITE_SIZE}
+    @sound_collect = Gosu::Sample.new("musics/GetRuby2.wav")
+    @sound_Nocollect = Gosu::Sample.new("musics/NoGetRuby.wav")
+    @music = Gosu::Song.new(self, "musics/koala.wav")
+    @lose_sprite = Gosu::Image.new(self, 'images/flag.png', true)
+    @items = []
+    reset
+  end
